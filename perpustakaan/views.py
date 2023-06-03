@@ -33,7 +33,7 @@ class BukuListApiView(APIView):
             data = request.data
             buku = Buku.objects.get(isbn = data.get('isbn'))
             serializer = BukuSerializer(buku)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK, content_type='application/json')
 
     def post(self, request, *args, **kwargs):
         data = {
@@ -56,8 +56,8 @@ class PeminjamanListApiView(APIView):
         else:
             data = request.data
             peminjaman = Peminjaman.objects.get(primary_id = data.get('primary_id'))
-            serializer = Peminjaman.Serializer(peminjaman)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+            serializer = PeminjamanSerializer(peminjaman)
+        return Response(serializer.data, status=status.HTTP_200_OK, content_type='application/json')
 
     def post(self,request, *args, **kwargs):
         #update buku yang dipinjam

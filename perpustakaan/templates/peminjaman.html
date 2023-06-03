@@ -64,14 +64,15 @@ $(document).ready(function() {
     };
 
     $.ajax({
-      url: 'peminjaman',
+      url: 'api/peminjaman',
       type: 'GET',
       data: JSON.stringify(data),
       contentType: 'application/json',
       success: function(response) {
         // Handle the success response
         console.log(response);
-        $('#response-container').text(response);
+        var formattedResponse = JSON.stringify(response, null, 2)
+        $('#response-container').text(formattedResponse);
       },
       error: function(error) {
         // Handle the error response
