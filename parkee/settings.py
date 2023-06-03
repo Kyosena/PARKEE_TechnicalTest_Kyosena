@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 
+DATETIME_FORMAT = '%d-%m-%Y'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -53,7 +54,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'parkee.urls'
-AUTH_USER_MODEL = 'perpustakaan.CustomUser'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
