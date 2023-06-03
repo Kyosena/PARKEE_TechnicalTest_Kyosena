@@ -19,6 +19,7 @@ from .views import *
 
 urlpatterns = [
     path('', index, name = "index"),
+    path('peminjaman', peminjaman, name = "peminjaman"),
     path('api/buku', BukuListApiView.as_view()),
     path('api/peminjaman', PeminjamanListApiView.as_view()),
 ]

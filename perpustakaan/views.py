@@ -15,6 +15,14 @@ def index(request):
         'buku' : buku
     }
     return render(request,"index.html",data)
+
+def peminjaman(request):
+    peminjaman = Peminjaman.objects.all()
+    data = {
+        'peminjaman' : peminjaman
+    }
+    return render(request,"peminjaman.html",data)
+    
 class BukuListApiView(APIView):
 
     def get(self, request, *args, **kwargs):

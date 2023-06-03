@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Books </title>
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <body>
+
+        <table>
+            <tr>
+                <td>id</td>
+                <td>buku</td>
+                <td>ktp</td>
+                <td>nama</td>
+                <td>email</td>
+                <td>tanggal peminjaman</td>
+                <td>tanggal deadline</td>
+                <td>tanggal pengembalian</td>
+                <td>dikembalikan</td>
+                <td>keterlambatan</td> 
+            </tr>
+        
+            {% for values in peminjaman %}
+            <tr>
+                <td>{{ values.primary_id }}</td>
+                <td>{{ values.buku }}</td>
+                <td>{{ values.ktp }}</td>
+                <td>{{ values.nama }}</td>
+                <td>{{ values.email }}</td>
+                <td>{{ values.tanggal_pinjam }}</td>
+                <td> {{ values.tanggal_deadline }}</td>
+                <td>{{ values.tanggal_pengembalian }}</td>
+                {% if values.dikembalikan %}
+                <td>Sudah</td>
+                {% else %}
+                <td>Belum</td>
+                {% endif %}
+                {% if values.telat %}
+                <td>Telat</td>
+                {% else %}
+                <td>Tepat Waktu</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
