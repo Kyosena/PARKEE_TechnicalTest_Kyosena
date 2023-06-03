@@ -18,6 +18,7 @@ from django.urls import path, include
 from .views import *
 
 urlpatterns = [
+    path('', index, name = "index"),
     path('api/buku', BukuListApiView.as_view()),
     path('api/peminjaman', PeminjamanListApiView.as_view()),
 ]

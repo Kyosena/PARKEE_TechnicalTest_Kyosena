@@ -2,11 +2,19 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
+from django.http import JsonResponse
+from django.shortcuts import render
 from django.db.models.functions import ExtractDay
 from .models import *
 from .serializers import *
 import pandas as pd
 
+def index(request):
+    buku = Buku.objects.all()
+    data = {
+        'buku' : buku
+    }
+    return render(request,"index.html",data)
 class BukuListApiView(APIView):
 
     def get(self, request, *args, **kwargs):
