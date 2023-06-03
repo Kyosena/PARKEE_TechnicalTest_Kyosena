@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Books </title>
+        <title>Peminjaman </title>
         <!-- Font Awesome icons (free version)-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <body>
@@ -23,6 +23,8 @@
                 <td>tanggal pengembalian</td>
                 <td>dikembalikan</td>
                 <td>keterlambatan</td> 
+                <td> details </td>
+                <td> delete </td>
             </tr>
         
             {% for values in peminjaman %}
@@ -45,8 +47,38 @@
                 {% else %}
                 <td>Tepat Waktu</td>
                 {% endif %}
+                <td><button class="detail-btn" data-primary-id="{{ values.primary_id }}">Detail</button></td>
             </tr>
             {% endfor %}
         </table>
+        <div id="response-container"></div>
     </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('.detail-btn').on('click', function() {
+    var primaryId = $(this).data('primary-id');
+    var data = {
+      'primary_id': primaryId
+    };
+
+    $.ajax({
+      url: 'peminjaman',
+      type: 'GET',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      success: function(response) {
+        // Handle the success response
+        console.log(response);
+        $('#response-container').text(response);
+      },
+      error: function(error) {
+        // Handle the error response
+        console.log(error);
+      }
+    });
+  });
+});
+</script>
+
